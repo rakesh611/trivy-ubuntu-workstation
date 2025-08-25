@@ -46,7 +46,7 @@ trivy image nginx:latest -o /trivy-reports/images/nginx.json
 Scan IaC files:
 trivy fs /path/to/manifests -o /trivy-reports/iac/manifests.json
 Scan Git repositories:
-trivy repo https://github.com/aquasecurity/trivy -o /trivy-reports/git/trivy-repo.json
+trivy repo https://github.com/you_repo
 Check Trivy update logs:
 cat /trivy-reports/logs/trivy-update.log
 Extending the Pod
