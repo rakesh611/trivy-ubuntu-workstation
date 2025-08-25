@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trivy-ubuntu
+  namespace: trivy-workstation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trivy-ubuntu
+  template:
+    metadata:
+      labels:
+        app: trivy-ubuntu
+    spec:
+      containers:
+        - name: trivy-ubuntu
+          image: docker.io/rakesh6nm/trivy-ubuntu:ssh
+          imagePullPolicy: Always
+          command:
+            - /bin/bash
+            - -c
+            - |
+              echo ">>> Starting cron service..."
+              service cron start
+              echo ">>> Container ready with Trivy installed."
+              mkdir -p /trivy-reports/logs
+              touch /trivy-reports/logs/trivy-update.log
+              tail -f /trivy-reports/logs/trivy-update.log
+          volumeMounts:
+            - name: trivy-data
+              mountPath: /trivy-reports
+            - name: docker-sock
+              mountPath: /var/run/docker.sock
+
+      volumes:
+        - name: trivy-data
+          persistentVolumeClaim:
+            claimName: trivy-pvc
+        - name: docker-sock
+          hostPath:
+            path: /var/run/docker.sock
+            type: Socket
+
