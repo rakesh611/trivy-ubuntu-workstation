@@ -27,10 +27,11 @@ This project deploys a full-featured Ubuntu pod in Kubernetes with Trivy install
 1. Apply the namespace
 
 2. Apply the PersistentVolume:
-3. Deploy the Trivy Ubuntu workstation pod:
-4. (Optional) Apply the NodePort service for external access:
-5. Access the pod:
-6. Verify installed tools and Trivy:
+3. Apply the Persistentvolumeclaim
+4. Deploy the Trivy Ubuntu workstation pod:
+5. (Optional) Apply the NodePort service for external access:
+6. Access the pod:
+7. Verify installed tools and Trivy:
 trivy --version
 vim --version
 git --version
