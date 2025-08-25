@@ -3,6 +3,7 @@ trivy-ubuntu-workstation/
 │
 ├── README.md
 ├── pv.yml
+├── Dockerfile
 ├── pvc.yaml
 ├── namespace.yml
 ├── deployment.yaml
